@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hammad Ali - Profile Overview</title>
+    <!-- Google Fonts: Poppins for headings, Roboto for body text -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        /* CSS Variables for a consistent theme */
+        :root {
+            --primary-color: #3498db; /* A vibrant blue */
+            --secondary-color: #2ecc71; /* A fresh green */
+            --text-color: #333; /* Dark grey for general text */
+            --light-text-color: #666; /* Lighter grey for secondary text */
+            --background-color: #f8f9fa; /* Off-white page background */
+            --card-background: #ffffff; /* White for main containers */
+            --card-accent-background: #ecf0f1; /* Light grey for inner cards */
+            --border-color: #e0e0e0; /* Light grey border */
+            --shadow-color: rgba(0, 0, 0, 0.08); /* Subtle shadow */
+        }
+
+        /* Basic Reset & Typography */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--background-color);
+            padding: 20px;
+            scroll-behavior: smooth;
+        }
+
+        a {
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: #2980b9; /* Darker blue on hover */
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Poppins', sans-serif;
+            color: var(--text-color);
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        h1 {
+            font-size: 2.8em;
+            text-align: center;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+        }
+
+        h2 {
+            font-size: 2.2em;
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 10px;
+            margin-bottom: 25px;
+            color: var(--primary-color);
+        }
+
+        h3 {
+            font-size: 1.5em;
+            color: var(--text-color);
+            margin-bottom: 10px;
+        }
+
+        p {
+            margin-bottom: 10px;
+        }
+
+        ul {
+            list-style: none;
+            padding-left: 0;
+            margin-bottom: 10px;
+        }
+
+        ul li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 5px;
+        }
+
+        ul li::before {
+            content: '•';
+            color: var(--primary-color);
+            position: absolute;
+            left: 0;
+        }
+
+        /* Main Layout Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: var(--card-background);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px var(--shadow-color);
+        }
+
+        /* Header Styling */
+        header {
+            text-align: center;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 10px;
+            font-size: 0.95em;
+            color: var(--light-text-color);
+        }
+
+        .contact-info span {
+            display: flex;
+            align-items: center;
+        }
+
+        .contact-info span i {
+            margin-right: 8px;
+            color: var(--primary-color);
+        }
+
+        .social-links {
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            display: inline-block;
+            margin: 0 15px;
+            font-size: 1.1em;
+            color: var(--primary-color);
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            transform: translateY(-3px);
+            color: #2980b9;
+        }
+        
+        /* Section Styling */
+        section {
+            margin-bottom: 40px;
+            padding: 20px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            background-color: var(--card-background);
+            box-shadow: 0 2px 10px var(--shadow-color);
+        }
+
+        /* Card styles for various sections (Education, Experience, Projects, Certifications) */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .card {
+            background-color: var(--card-accent-background); /* Lighter background for cards within sections */
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            height: 100%; /* Ensure cards in a grid have same height */
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between; /* Distribute content nicely */
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 15px var(--shadow-color);
+        }
+
+        .card h3 {
+            color: var(--primary-color);
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+
+        .card-meta {
+            font-size: 0.9em;
+            color: var(--light-text-color);
+            margin-bottom: 10px;
+        }
+
+        .card-bullet-points ul {
+            list-style: disc; /* Use discs for bullet points */
+            padding-left: 20px;
+            margin-top: 10px;
+        }
+        
+        .card-bullet-points ul li::before {
+            content: none; /* Remove custom bullet for nested lists */
+        }
+
+        /* Skills Section */
+        .skills-categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .skill-category {
+            background-color: var(--card-accent-background);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .skill-category h3 {
+            margin-top: 0;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+            font-size: 1.2em;
+        }
+
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px; /* Adjusted gap for individual skill tags */
+        }
+
+        .skills-list span {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 5px;
+            font-size: 0.9em;
+            white-space: nowrap;
+            transition: background-color 0.3s ease;
+        }
+
+        .skills-list span:hover {
+            background-color: #2980b9; /* Darker blue on hover */
+        }
+
+        /* Project specific styles */
+        .project-technologies {
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+
+        .project-technologies span {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.8em;
+            margin-right: 5px;
+            margin-bottom: 5px;
+            display: inline-block;
+        }
+
+        /* Coding Practice Section */
+        .coding-practice-details {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .coding-practice-details > div {
+            flex: 1;
+            min-width: 250px;
+            background-color: var(--card-accent-background);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+        
+        .coding-practice-details h4 {
+            color: var(--primary-color);
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+
+        /* Ratings Section (Skill Assessment) */
+        .ratings-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .rating-item {
+            background-color: var(--card-accent-background);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between; /* Distribute content nicely */
+            height: 100%;
+        }
+
+        .rating-item h3 {
+            color: var(--primary-color);
+            margin-top: 0;
+            margin-bottom: 15px;
+        }
+
+        .score-display {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .score-bar-container {
+            flex-grow: 1;
+            height: 10px;
+            background-color: var(--border-color);
+            border-radius: 5px;
+            overflow: hidden;
+            margin-right: 10px;
+        }
+
+        .score-bar {
+            height: 100%;
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            border-radius: 5px;
+            transition: width 0.5s ease-out; /* Smooth transition for score changes */
+        }
+
+        .score-text {
+            font-weight: 600;
+            color: var(--text-color);
+            min-width: 40px; /* Ensure score text has consistent width */
+            text-align: right;
+        }
+
+        .rating-rationale {
+            font-size: 0.9em;
+            color: var(--light-text-color);
+            margin-top: 10px;
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 992px) {
+            .container {
+                padding: 20px;
+            }
+            h1 {
+                font-size: 2.4em;
+            }
+            h2 {
+                font-size: 1.8em;
+            }
+            h3 {
+                font-size: 1.3em;
+            }
+            .card-grid, .ratings-grid, .skills-categories {
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 15px;
+            }
+            .contact-info {
+                flex-direction: column;
+                align-items: center;
+                gap: 10px;
+            }
+            .social-links a {
+                margin: 0 10px;
+            }
+            .card-grid, .ratings-grid, .skills-categories {
+                grid-template-columns: 1fr; /* Stack columns on smaller screens */
+            }
+            .coding-practice-details {
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2em;
+            }
+            h2 {
+                font-size: 1.6em;
+            }
+            section {
+                padding: 15px;
+                margin-bottom: 30px;
+            }
+            .contact-info {
+                font-size: 0.85em;
+            }
+            .social-links a {
+                font-size: 1em;
+            }
+            .card, .rating-item, .skill-category {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="personal-info">
+                <h1>Hammad Ali</h1>
+                <div class="contact-info">
+                    <span><i>&#9993;</i> <a href="mailto:hammadalipbt18@gmail.com">hammadalipbt18@gmail.com</a></span>
+                    <span><i>&#9742;</i> +91-1234567890</span>
+                    <span><i>&#x1F4CD;</i> Delhi, India</span>
+                </div>
+                <div class="social-links">
+                    <a href="https://www.linkedin.com/in/hammadali1805/" target="_blank">LinkedIn</a>
+                    <a href="https://github.com/hammadali1805" target="_blank">GitHub</a>
+                    <a href="https://leetcode.com/hammadali1805" target="_blank">LeetCode</a>
+                    <a href="https://hammadali1805.vercel.app/" target="_blank">Portfolio</a>
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <section id="summary">
+                <h2>Summary</h2>
+                <p>Detail-oriented Computer Engineering student with a strong foundation in AI/ML, web development, and data analysis, passionate about building innovative and impactful technical solutions.</p>
+                <p>Proficient in Python, JavaScript, and C++, with hands-on experience in developing full-stack applications, automation tools, and machine learning models.</p>
+                <p>Proven leader and effective communicator, demonstrated through roles as President of W3B - AI and Blockchain Society JMI and GDG AI/ML Lead.</p>
+                <p>Recipient of the Smart India Hackathon 2024, actively seeking to leverage advanced technical skills in challenging and transformative projects.</p>
+            </section>
+
+            <section id="skills">
+                <h2>Skills</h2>
+                <div class="skills-categories">
+                    <div class="skill-category">
+                        <h3>Programming Languages</h3>
+                        <div class="skills-list">
+                            <span>Python</span><span>JavaScript</span><span>C++</span><span>C</span><span>SQL</span><span>HTML</span><span>CSS</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3>AI/Machine Learning</h3>
+                        <div class="skills-list">
+                            <span>Artificial Intelligence (AI)</span><span>Machine Learning</span><span>Generative AI</span><span>Large Language Models (LLM)</span><span>Natural Language Processing (NLP)</span><span>Computer Vision</span><span>Object Detection</span><span>Retrieval-Augmented Generation (RAG)</span><span>Fine Tuning</span><span>TensorFlow</span><span>Keras</span><span>Hugging Face</span><span>YOLO</span><span>MediaPipe</span><span>Gemini AI</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3>Web Technologies & Frameworks</h3>
+                        <div class="skills-list">
+                            <span>Flask</span><span>Django</span><span>Node.js</span><span>React.js</span><span>Streamlit</span><span>Bootstrap</span><span>Tkinter</span><span>Kivy</span><span>WordPress</span><span>WooCommerce</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3>Databases</h3>
+                        <div class="skills-list">
+                            <span>MongoDB</span><span>MySQL</span><span>Vector Databases (Chroma DB)</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3>Data Analysis & Tools</h3>
+                        <div class="skills-list">
+                            <span>Pandas</span><span>NumPy</span><span>Plotly</span><span>Dash</span><span>Excel Dashboards</span><span>Web Scraping</span><span>Automation</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3>Version Control</h3>
+                        <div class="skills-list">
+                            <span>Git</span><span>GitHub</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3>Mobile Development</h3>
+                        <div class="skills-list">
+                            <span>Flutter</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3>Core CS</h3>
+                        <div class="skills-list">
+                            <span>Data Structures</span><span>Algorithms</span><span>Software Development</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3>Other</h3>
+                        <div class="skills-list">
+                            <span>API Development</span><span>UI/UX Design Principles</span><span>Debugging</span><span>Problem-Solving</span><span>Project Management</span><span>Teamwork</span><span>Communication</span><span>Critical Thinking</span><span>Analytical Skills</span><span>Leadership</span><span>Event Management</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="education">
+                <h2>Education</h2>
+                <div class="card-grid">
+                    <div class="card">
+                        <h3>Jamia Millia Islamia</h3>
+                        <p class="card-meta">Bachelor of Technology - BTech</p>
+                        <p class="card-meta">Computer Engineering</p>
+                        <p class="card-meta">October 2022 – June 2026</p>
+                    </div>
+                    <div class="card">
+                        <h3>Kendriya vidyalaya</h3>
+                        <p class="card-meta">Senior Secondary Education</p>
+                        <p class="card-meta">Mathematics and Computer Science</p>
+                        <p class="card-meta">2020 – 2022</p>
+                    </div>
+                    <div class="card">
+                        <h3>Ben Hur Public School</h3>
+                        <p class="card-meta">Secondary Education</p>
+                        <p class="card-meta">February 2019 – February 2020</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="experience">
+                <h2>Experience</h2>
+                <div class="card-grid">
+                    <div class="card">
+                        <h3>President</h3>
+                        <p class="card-meta">W3B - AI and Blockchain Society JMI | April 2025 – Present</p>
+                        <div class="card-bullet-points">
+                            <ul>
+                                <li>Led and managed strategic initiatives for the college's AI and Blockchain society, fostering innovation and community growth.</li>
+                                <li>Oversaw project development and team coordination, enhancing member engagement and technical skill development.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h3>Data Scientist</h3>
+                        <p class="card-meta">kaksha.live | March 2025 – May 2025</p>
+                        <div class="card-bullet-points">
+                            <ul>
+                                <li>Contributed to data collection, analysis, and modeling efforts for a startup focused on integrating technology into schools.</li>
+                                <li>Supported AI and machine learning projects, applying data-driven insights to enhance educational solutions.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h3>Head of Web Development</h3>
+                        <p class="card-meta">W3B - AI and Blockchain Society JMI | November 2024 – April 2025</p>
+                        <div class="card-bullet-points">
+                            <ul>
+                                <li>Directed and managed web development projects for the society, ensuring timely and effective delivery of digital platforms.</li>
+                                <li>Mentored junior developers, implementing best practices in web technologies and fostering a collaborative development environment.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h3>GDG AI/ML Lead</h3>
+                        <p class="card-meta">Google Developer Student Club - JMI | October 2024 – April 2025</p>
+                        <div class="card-bullet-points">
+                            <ul>
+                                <li>Organized and led workshops and events focused on AI/ML, attracting over 100 participants.</li>
+                                <li>Provided mentorship and technical guidance to students, fostering a strong community of AI/ML enthusiasts.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h3>Python Developer</h3>
+                        <p class="card-meta">Paper Perfect | June 2023 – November 2024</p>
+                        <div class="card-bullet-points">
+                            <ul>
+                                <li>Developed and deployed Python-based solutions to automate various business processes, improving operational efficiency.</li>
+                                <li>Collaborated with cross-functional teams to identify requirements and deliver robust software solutions.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="projects">
+                <h2>Projects</h2>
+                <div class="card-grid">
+                    <div class="card">
+                        <h3><a href="https://github.com/hammadali1805/evalzz" target="_blank">EVALZZ: AI-Powered Talent Assessment Platform</a></h3>
+                        <p>An innovative HRTech platform designed to standardize and unify candidate profiles by automatically analyzing code repositories, social posts, and past project work.</p>
+                        <p class="project-technologies">
+                            <span>Python</span><span>HTML</span><span>AI/ML (Conceptual)</span>
+                        </p>
+                        <div class="card-bullet-points">
+                            <ul>
+                                <li>Revolutionizes hiring by providing holistic, job-specific candidate insights and instant shareability.</li>
+                                <li>Currently in prototype phase, actively seeking co-founders and early adopters to shape the future of recruitment.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h3><a href="https://github.com/hammadali1805/LUFY" target="_blank">LUFY: Law Understandable For You</a></h3>
+                        <p>An intuitive platform simplifying complex legal documents into concise, multi-language summaries using advanced AI models for enhanced accessibility.</p>
+                        <p class="project-technologies">
+                            <span>Python</span><span>JavaScript</span><span>Flask</span><span>Hugging Face (BART, T5)</span><span>LORA adapters</span><span>Google Translator API</span>
+                        </p>
+                        <div class="card-bullet-points">
+                            <ul>
+                                <li>Trained and deployed AI models (Facebook/Large-BART-CNN, Google/T5-small) for abstractive legal summarization.</li>
+                                <li>Developed Flask APIs for seamless document upload and summarization, supporting various local languages.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h3><a href="https://github.com/hammadali1805/Quran-Hadith-Chatbot" target="_blank">AI-Powered Islamic Query Chatbot</a></h3>
+                        <p>A chatbot providing quick and accurate answers to Islamic questions by leveraging advanced NLP and ML techniques to retrieve information from the Quran and Hadiths.</p>
+                        <p class="project-technologies">
+                            <span>Python</span><span>Streamlit</span><span>Gemini AI</span><span>Chroma DB</span><span>Hugging Face (embeddings)</span>
+                        </p>
+                        <div class="card-bullet-points">
+                            <ul>
+                                <li>Built a comprehensive vector store of Quran and Hadiths (Sahih Bukhari, Sahih Muslim) using Chroma DB.</li>
+                                <li>Implemented query expansion and similarity search, powered by Gemini AI, to generate precise and contextually relevant responses.</li>
+                                <li>Designed and deployed a user-friendly interface on Streamlit Cloud for easy access to Islamic knowledge.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h3><a href="https://github.com/hammadali1805/neet_2024_data_analysis" target="_blank">NEET Citywise and Centerwise Data Analysis</a></h3>
+                        <p>A comprehensive web application analyzing NEET UG 2024 results to provide transparent insights into score distributions and potential irregularities across examination centers.</p>
+                        <p class="project-technologies">
+                            <span>Python</span><span>Streamlit</span><span>Selenium</span><span>Requests</span><span>Tabula</span><span>Pandas</span>
+                        </p>
+                        <div class="card-bullet-points">
+                            <ul>
+                                <li>Developed a Streamlit website offering performance ranking and comparative analysis across locations.</li>
+                                <li>Scraped and processed over 2.3 million student records from 4,750 PDF documents.</li>
+                                <li>Contributed to enhancing transparency in high-stakes examination processes by visualizing complex data.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h3><a href="https://github.com/hammadali1805/vehicle_detection_yolov5" target="_blank">Vehicle Detection using YOLO v5</a></h3>
+                        <p>A computer vision project utilizing the YOLO v5 architecture to accurately identify and classify various vehicles in videos, featuring a web application for user uploads.</p>
+                        <p class="project-technologies">
+                            <span>Python</span><span>YOLO v5</span><span>Flask</span><span>RoboFlow dataset</span>
+                        </p>
+                        <div class="card-bullet-points">
+                            <ul>
+                                <li>Trained a robust YOLO v5 model on the RoboFlow dataset, comprising 627 images across various vehicle classes.</li>
+                                <li>Developed a user-friendly webpage with Flask APIs, enabling real-time vehicle detection from uploaded video content.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="coding-practice">
+                <h2>Coding Practice (LeetCode)</h2>
+                <div class="coding-practice-details">
+                    <div>
+                        <h4>Summary</h4>
+                        <ul>
+                            <li>Total Solved: 2</li>
+                            <li>Acceptance Rate: 33.33%</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4>Difficulty Breakdown</h4>
+                        <ul>
+                            <li>Easy: 1</li>
+                            <li>Medium: 0</li>
+                            <li>Hard: 0</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4>Top Tags</h4>
+                        <ul>
+                            <li>Recursion: 1 solved</li>
+                            <li>Bit Manipulation: 1 solved</li>
+                            <li>Math: 1 solved</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4>Contest Statistics</h4>
+                        <ul>
+                            <li>Current Rating: Not Available</li>
+                            <li>Global Rank: Not Available</li>
+                            <li>Contests Attended: 0</li>
+                            <li>Top Percentile: Not Available</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section id="certifications">
+                <h2>Certifications</h2>
+                <div class="card-grid">
+                    <div class="card">
+                        <h3>Python for beginners - Learn all the basics of python</h3>
+                        <p class="card-meta">Udemy | September 2021</p>
+                    </div>
+                    <div class="card">
+                        <h3>Complete Python & Python OOP with Exercises & Projects in 2021</h3>
+                        <p class="card-meta">Udemy | September 2021</p>
+                    </div>
+                    <div class="card">
+                        <h3>Become A Certified Web Developer From Scratch</h3>
+                        <p class="card-meta">EDUONIX | October 2021</p>
+                    </div>
+                    <div class="card">
+                        <h3>Be A White Hat Hacker and Pen Tester</h3>
+                        <p class="card-meta">EDUONIX | October 2021</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="achievements">
+                <h2>Achievements</h2>
+                <ul>
+                    <li>Winner of Smart India Hackathon (SIH) 2024.</li>
+                    <li>Instructor at ML Bootcamp powered by Nasheedio, covering topics from data preprocessing to Deep Learning and GenAI.</li>
+                    <li>Successfully delivered numerous freelance projects across diverse industries, recognized for impact and efficiency.</li>
+                    <li>Achieved 96.38%ile in JEE Mains, securing admission to a prestigious top-tier university.</li>
+                </ul>
+            </section>
+            
+            <section id="ratings-assessment">
+                <h2>Skill Assessment</h2>
+                <div class="ratings-grid">
+                    <div class="rating-item">
+                        <h3>Technical Writing</h3>
+                        <div class="score-display">
+                            <div class="score-bar-container">
+                                <div class="score-bar" style="width: calc(4.0 / 5.0 * 100%);"></div>
+                            </div>
+                            <span class="score-text">4.0/5.0</span>
+                        </div>
+                        <p class="rating-rationale">The candidate provides clear and detailed descriptions for their LinkedIn projects and GitHub repositories, demonstrating good communication skills in explaining technical concepts and project scope.</p>
+                    </div>
+                    <div class="rating-item">
+                        <h3>Programming Skills</h3>
+                        <div class="score-display">
+                            <div class="score-bar-container">
+                                <div class="score-bar" style="width: calc(4.0 / 5.0 * 100%);"></div>
+                            </div>
+                            <span class="score-text">4.0/5.0</span>
+                        </div>
+                        <p class="rating-rationale">The candidate exhibits strong programming skills with proficiency in Python, JavaScript, C++, and C, demonstrated through diverse projects spanning AI/ML, web development, and automation, although LeetCode performance indicates less focus on algorithmic problem-solving.</p>
+                    </div>
+                    <div class="rating-item">
+                        <h3>Code Quality</h3>
+                        <div class="score-display">
+                            <div class="score-bar-container">
+                                <div class="score-bar" style="width: calc(3.0 / 5.0 * 100%);"></div>
+                            </div>
+                            <span class="score-text">3.0/5.0</span>
+                        </div>
+                        <p class="rating-rationale">While the candidate mentions 'clean code practices' in their GitHub Wrapped post, direct evidence of code quality standards (e.g., readability, modularity, comments) is not available from the provided data, warranting a moderate score.</p>
+                    </div>
+                    <div class="rating-item">
+                        <h3>Project Impact</h3>
+                        <div class="score-display">
+                            <div class="score-bar-container">
+                                <div class="score-bar" style="width: calc(3.5 / 5.0 * 100%);"></div>
+                            </div>
+                            <span class="score-text">3.5/5.0</span>
+                        </div>
+                        <p class="rating-rationale">Projects like LUFY, AI-Powered Islamic Query Chatbot, and NEET Data Analysis show potential for real-world application and impact, though external validation (stars/forks) and user adoption metrics are limited.</p>
+                    </div>
+                    <div class="rating-item">
+                        <h3>Technology Awareness</h3>
+                        <div class="score-display">
+                            <div class="score-bar-container">
+                                <div class="score-bar" style="width: calc(4.5 / 5.0 * 100%);"></div>
+                            </div>
+                            <span class="score-text">4.5/5.0</span>
+                        </div>
+                        <p class="rating-rationale">The candidate demonstrates high awareness of modern technologies, actively utilizing and mentioning cutting-edge tools and frameworks in AI/ML (GenAI, LLMs, RAG, Hugging Face, Gemini AI, YOLO) and web development (Streamlit, Flask, React.js).</p>
+                    </div>
+                    <div class="rating-item">
+                        <h3>Collaboration Communication</h3>
+                        <div class="score-display">
+                            <div class="score-bar-container">
+                                <div class="score-bar" style="width: calc(4.0 / 5.0 * 100%);"></div>
+                            </div>
+                            <span class="score-text">4.0/5.0</span>
+                        </div>
+                        <p class="rating-rationale">Serving as President of W3B, Head of Web Development, and GDG AI/ML Lead, coupled with an instructor role, strongly indicates excellent collaboration, leadership, and communication abilities.</p>
+                    </div>
+                    <div class="rating-item">
+                        <h3>Open Source Contributions</h3>
+                        <div class="score-display">
+                            <div class="score-bar-container">
+                                <div class="score-bar" style="width: calc(2.5 / 5.0 * 100%);"></div>
+                            </div>
+                            <span class="score-text">2.5/5.0</span>
+                        </div>
+                        <p class="rating-rationale">While the candidate has 35 public repositories and mentions open-source in their GitHub Wrapped, the overall commit count (192) and very low stars (13) suggest limited significant contributions to established open-source projects beyond personal endeavors.</p>
+                    </div>
+                    <div class="rating-item">
+                        <h3>Competitive Programming</h3>
+                        <div class="score-display">
+                            <div class="score-bar-container">
+                                <div class="score-bar" style="width: calc(1.0 / 5.0 * 100%);"></div>
+                            </div>
+                            <span class="score-text">1.0/5.0</span>
+                        </div>
+                        <p class="rating-rationale">The candidate's LeetCode profile shows minimal engagement, with only 2 problems solved and no contest participation, indicating a significant area for development in competitive programming and algorithmic proficiency.</p>
+                    </div>
+                    <div class="rating-item">
+                        <h3>System Design</h3>
+                        <div class="score-display">
+                            <div class="score-bar-container">
+                                <div class="score-bar" style="width: calc(2.5 / 5.0 * 100%);"></div>
+                            </div>
+                            <span class="score-text">2.5/5.0</span>
+                        </div>
+                        <p class="rating-rationale">The projects primarily focus on application development rather than large-scale system architecture, with no explicit mention of detailed system design considerations, scalability principles, or trade-offs in the provided descriptions.</p>
+                    </div>
+                    <div class="rating-item">
+                        <h3>Testing QA</h3>
+                        <div class="score-display">
+                            <div class="score-bar-container">
+                                <div class="score-bar" style="width: calc(2.0 / 5.0 * 100%);"></div>
+                            </div>
+                            <span class="score-text">2.0/5.0</span>
+                        </div>
+                        <p class="rating-rationale">There is no explicit mention of testing methodologies, unit/integration tests, or quality assurance practices in project descriptions or skills, suggesting this is not a prominent area of focus or documentation.</p>
+                    </div>
+                    <div class="rating-item">
+                        <h3>DevOps Automation</h3>
+                        <div class="score-display">
+                            <div class="score-bar-container">
+                                <div class="score-bar" style="width: calc(2.5 / 5.0 * 100%);"></div>
+                            </div>
+                            <span class="score-text">2.5/5.0</span>
+                        </div>
+                        <p class="rating-rationale">While the candidate mentions Docker and Kubernetes as areas of interest and has built functional automation tools (e.g., Twitter Automation), there's no concrete evidence of implementing CI/CD pipelines or infrastructure as code in their projects.</p>
+                    </div>
+                    <div class="rating-item">
+                        <h3>Learning Agility</h3>
+                        <div class="score-display">
+                            <div class="score-bar-container">
+                                <div class="score-bar" style="width: calc(4.0 / 5.0 * 100%);"></div>
+                            </div>
+                            <span class="score-text">4.0/5.0</span>
+                        </div>
+                        <p class="rating-rationale">The candidate consistently undertakes diverse projects using new technologies, instructs others in ML, and expresses a passion for emerging tech, demonstrating a strong ability and willingness to quickly pick up new tools and concepts.</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+</body>
+</html>
