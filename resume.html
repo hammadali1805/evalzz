@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Developer Profile: Resume & Skill Assessment</title>
+    <!-- Google Fonts for modern typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* CSS Variables for easy theme customization */
+        :root {
+            --primary-color: #3498db; /* Blue for accents and headers */
+            --secondary-color: #2c3e50; /* Dark Blue/Gray for main text */
+            --accent-color: #e74c3c; /* Red, not heavily used but available */
+            --text-color: #333; /* General text color */
+            --light-text-color: #7f8c8d; /* Lighter text for details */
+            --background-color: #ecf0f1; /* Light Gray background */
+            --card-background: #fff; /* White background for cards */
+            --border-color: #ddd; /* Light gray for borders */
+            --shadow-color: rgba(0, 0, 0, 0.1); /* Subtle shadow */
+            --rating-fill: #27ae60; /* Green for ratings progress bars */
+        }
+
+        /* Base styles */
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            display: flex;
+            justify-content: center; /* Center the main content */
+            min-height: 100vh; /* Full viewport height */
+            box-sizing: border-box; /* Include padding and border in element's total width and height */
+        }
+
+        /* Main container for the entire page */
+        .container {
+            display: flex;
+            flex-wrap: wrap; /* Allows columns to wrap on smaller screens */
+            max-width: 1400px; /* Max width for readability */
+            margin: 20px; /* Margin around the container */
+            gap: 20px; /* Space between columns */
+        }
+
+        /* Left and Right sections (Resume and Ratings) */
+        .section-left, .section-right {
+            flex: 1; /* Allow sections to grow and shrink */
+            min-width: 300px; /* Minimum width before wrapping to a single column */
+            background-color: var(--card-background);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px var(--shadow-color); /* Soft shadow for depth */
+            transition: transform 0.3s ease-in-out; /* Smooth transition for hover effects */
+        }
+
+        .section-left {
+            flex: 2; /* Resume section takes more horizontal space */
+        }
+
+        .section-right {
+            flex: 1; /* Ratings section */
+        }
+
+        /* Headings */
+        h1, h2, h3 {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--secondary-color);
+            margin-top: 0;
+            margin-bottom: 20px;
+            border-bottom: 2px solid var(--primary-color); /* Underline with accent color */
+            padding-bottom: 10px;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            text-align: center;
+            width: 100%; /* Take full width of the container */
+            border-bottom: none; /* No underline for the main title */
+            color: var(--primary-color);
+            margin-bottom: 30px;
+            padding-bottom: 0;
+        }
+
+        h2 {
+            font-size: 1.8em;
+            margin-top: 30px;
+        }
+
+        h3 {
+            font-size: 1.4em;
+            margin-top: 25px;
+            border-bottom: 1px solid var(--border-color); /* Lighter underline for subsections */
+            padding-bottom: 8px;
+            margin-bottom: 15px;
+        }
+
+        p {
+            margin-bottom: 10px;
+        }
+
+        /* Lists (e.g., summary, achievements, bullet points) */
+        ul {
+            list-style: none; /* Remove default bullet points */
+            padding: 0;
+            margin-bottom: 20px;
+        }
+
+        ul li {
+            margin-bottom: 8px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        ul li::before {
+            content: '•'; /* Custom bullet point */
+            color: var(--primary-color);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        /* Skills tags */
+        .skills-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px; /* Space between skill tags */
+            margin-bottom: 20px;
+        }
+
+        .skill-tag {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px; /* Pill-shaped tags */
+            font-size: 0.9em;
+            white-space: nowrap; /* Prevent tags from breaking */
+        }
+
+        /* Card styles for education, experience, projects */
+        .card {
+            background-color: var(--card-background);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 8px var(--shadow-color);
+            transition: transform 0.2s ease, box-shadow 0.2s ease; /* Smooth hover effect */
+        }
+
+        .card:hover {
+            transform: translateY(-5px); /* Lift card on hover */
+            box-shadow: 0 6px 20px var(--shadow-color); /* Deeper shadow on hover */
+        }
+
+        .card h4 {
+            margin-top: 0;
+            margin-bottom: 5px;
+            color: var(--secondary-color);
+            font-size: 1.2em;
+            border-bottom: none; /* Override general h3 border */
+            padding-bottom: 0;
+        }
+
+        .card .subtitle {
+            font-style: italic;
+            color: var(--light-text-color);
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .card a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .card a:hover {
+            text-decoration: underline;
+        }
+
+        .project-technologies .skill-tag {
+            background-color: var(--secondary-color); /* Different color for project technologies */
+        }
+
+        /* Coding Practice Section */
+        .coding-stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); /* Responsive grid for stats */
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .stat-item {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 5px;
+            text-align: center;
+            border: 1px solid var(--border-color);
+        }
+
+        .stat-item strong {
+            display: block;
+            font-size: 1.5em;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+        }
+
+        .difficulty-breakdown {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 15px;
+            flex-wrap: wrap; /* Allow bars to wrap */
+            gap: 10px;
+        }
+
+        .difficulty-item {
+            text-align: center;
+            flex: 1; /* Distribute space evenly */
+            min-width: 100px; /* Minimum width for each difficulty item */
+        }
+
+        .difficulty-bar-container {
+            background-color: #e0e0e0;
+            border-radius: 5px;
+            height: 10px;
+            margin-top: 5px;
+            overflow: hidden; /* Ensures fill stays within bounds */
+        }
+
+        .difficulty-bar {
+            height: 100%;
+            border-radius: 5px;
+            background-color: var(--primary-color); /* Default */
+            transition: width 0.5s ease-out;
+        }
+        .difficulty-bar.easy { background-color: #2ecc71; } /* Green */
+        .difficulty-bar.medium { background-color: #f1c40f; } /* Yellow */
+        .difficulty-bar.hard { background-color: #e74c3c; } /* Red */
+
+
+        /* Ratings specific styling */
+        .rating-card {
+            background-color: var(--card-background);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 8px var(--shadow-color);
+        }
+
+        .rating-card h4 {
+            margin-top: 0;
+            margin-bottom: 10px;
+            color: var(--secondary-color);
+            font-size: 1.2em;
+            display: flex;
+            justify-content: space-between; /* Align name and score */
+            align-items: center;
+            border-bottom: none; /* Override general h4 border */
+            padding-bottom: 0;
+        }
+
+        .rating-score {
+            font-size: 1.1em;
+            font-weight: bold;
+            color: var(--rating-fill);
+        }
+
+        .progress-bar-container {
+            width: 100%;
+            background-color: #e0e0e0;
+            border-radius: 5px;
+            height: 10px;
+            margin-top: 5px;
+            overflow: hidden;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            background-color: var(--rating-fill);
+            border-radius: 5px;
+            transition: width 0.5s ease-out; /* Smooth animation for progress bar */
+        }
+
+        .rating-rationale {
+            font-size: 0.9em;
+            color: var(--light-text-color);
+            margin-top: 10px;
+            line-height: 1.5;
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 1024px) {
+            .container {
+                flex-direction: column; /* Stack columns on medium screens */
+                margin: 15px;
+            }
+            .section-left, .section-right {
+                min-width: unset; /* Remove min-width constraint */
+                flex: none; /* Prevent sections from growing beyond content */
+                padding: 25px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2em; }
+            h2 { font-size: 1.6em; }
+            h3 { font-size: 1.2em; }
+            .container {
+                margin: 10px;
+            }
+            .section-left, .section-right {
+                padding: 20px;
+            }
+            .card, .rating-card {
+                padding: 15px;
+            }
+            .skill-tag {
+                padding: 6px 12px;
+                font-size: 0.85em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 { font-size: 1.8em; }
+            h2 { font-size: 1.4em; }
+            h3 { font-size: 1.1em; }
+            .container {
+                margin: 5px;
+            }
+            .section-left, .section-right {
+                padding: 15px;
+            }
+            ul li {
+                padding-left: 15px;
+            }
+            .coding-stats-grid {
+                grid-template-columns: 1fr; /* Stack stats on small screens */
+            }
+            .difficulty-breakdown {
+                flex-direction: column; /* Stack difficulty bars vertically */
+                align-items: center;
+                gap: 10px;
+            }
+            .difficulty-item {
+                width: 80%; /* Give it some width when stacked */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Developer Profile</h1>
+
+        <div class="section-left">
+            <h2>Resume</h2>
+
+            <section id="summary">
+                <h3>Summary</h3>
+                <ul id="summary-list"></ul>
+            </section>
+
+            <section id="skills">
+                <h3>Skills</h3>
+                <div id="skills-grid" class="skills-grid"></div>
+            </section>
+
+            <section id="education">
+                <h3>Education</h3>
+                <div id="education-container"></div>
+            </section>
+
+            <section id="experience">
+                <h3>Experience</h3>
+                <div id="experience-container"></div>
+            </section>
+
+            <section id="projects">
+                <h3>Projects</h3>
+                <div id="projects-container"></div>
+            </section>
+
+            <section id="coding-practice">
+                <h3>Coding Practice (LeetCode)</h3>
+                <div class="coding-stats-grid">
+                    <div class="stat-item">
+                        <strong><span id="total-solved"></span></strong>
+                        <span>Problems Solved</span>
+                    </div>
+                    <div class="stat-item">
+                        <strong><span id="acceptance-rate"></span>%</strong>
+                        <span>Acceptance Rate</span>
+                    </div>
+                    <div class="stat-item">
+                        <strong><span id="contest-attended"></span></strong>
+                        <span>Contests Attended</span>
+                    </div>
+                    <div class="stat-item">
+                        <strong><span id="current-rating">N/A</span></strong>
+                        <span>Current Rating</span>
+                    </div>
+                </div>
+
+                <h4>Difficulty Breakdown</h4>
+                <div id="difficulty-breakdown" class="difficulty-breakdown"></div>
+
+                <h4>Top Solved Tags</h4>
+                <ul id="top-tags-list"></ul>
+            </section>
+
+            <section id="certifications">
+                <h3>Certifications</h3>
+                <ul id="certifications-list"></ul>
+            </section>
+
+            <section id="achievements">
+                <h3>Achievements</h3>
+                <ul id="achievements-list"></ul>
+            </section>
+        </div>
+
+        <div class="section-right">
+            <h2>Skill Assessment</h2>
+            <div id="ratings-container"></div>
+        </div>
+    </div>
+
+    <script>
+        const jsonData = {
+          "resume": {
+            "summary": [
+              "Highly motivated and adaptable Full Stack Developer and AI/ML enthusiast with a strong foundation in MERN stack, Python, and C++.",
+              "Proven ability in algorithmic problem-solving (240+ LeetCode problems) and rapid learning, successfully delivering complex projects and winning national hackathons.",
+              "Seeking opportunities to leverage expertise in web development, AI, and robust system design to build innovative and impactful software solutions.",
+              "Experience in backend development, API integration, and creating user-friendly interfaces with a focus on automation and efficiency."
+            ],
+            "skills": [
+              "JavaScript",
+              "Python",
+              "C++",
+              "TypeScript",
+              "HTML5",
+              "CSS3",
+              "React.js",
+              "Express.js",
+              "Node.js",
+              "MongoDB",
+              "Redis",
+              "Redux.js",
+              "PyTorch",
+              "WordPress",
+              "Elementor",
+              "Git",
+              "GitHub",
+              "Docker",
+              "CI/CD",
+              "RESTful APIs",
+              "Object-Oriented Programming (OOP)",
+              "Data Structures & Algorithms",
+              "Machine Learning",
+              "Deep Learning",
+              "Natural Language Processing (NLP)",
+              "Backend Development",
+              "Frontend Development",
+              "Blockchain",
+              "Cloudflare Pages",
+              "LLMs (Large Language Models)",
+              "Automation"
+            ],
+            "education": [
+              {
+                "institution": "Jamia Millia Islamia",
+                "degree": "Bachelor's degree in Electrical, Electronics and Communications Engineering",
+                "dates": "Oct 2022 – May 2026",
+                "gpa": "7.4 CGPA"
+              }
+            ],
+            "experience": [
+              {
+                "title": "Tech Team Member",
+                "company": "W3B - AI and Blockchain Society JMI",
+                "dates": "Sep 2024 – Present",
+                "bullet_points": [
+                  "Developed and maintained backend functionalities for the official W3B society website, ensuring robust data management and API performance.",
+                  "Contributed to the technical roadmap and implementation of features for AI and Blockchain-focused initiatives."
+                ]
+              },
+              {
+                "title": "Tech Team Member",
+                "company": "IEEE JMI - Student Branch",
+                "dates": "Jul 2023 – Present",
+                "bullet_points": [
+                  "Actively participated in various technical events and workshops, enhancing practical skills in electronics and communication engineering.",
+                  "Collaborated with peers on diverse technical projects, contributing to a vibrant learning environment."
+                ]
+              }
+            ],
+            "projects": [
+              {
+                "name": "Homier",
+                "link": "https://github.com/aabid2947/Homier",
+                "description": "A user-friendly payments hub designed to track daily bills, rent, and subscriptions, simplifying personal finance management.",
+                "technologies": ["TypeScript"],
+                "achievements": [
+                  "Developed a streamlined interface for monitoring recurring expenses.",
+                  "Ensured efficient tracking and organization of various payment types."
+                ]
+              },
+              {
+                "name": "Automated_Bid",
+                "link": "https://github.com/aabid2947/Automated_Bid",
+                "description": "An automation tool that scrapes freelancing platforms, uses LLMs to filter projects, craft bids/cover letters, and send notifications.",
+                "technologies": ["HTML", "Large Language Models (LLMs)", "Automation"],
+                "achievements": [
+                  "Automated the entire bidding process for freelancing projects, significantly reducing manual effort.",
+                  "Implemented LLM-based filtering and bid generation for personalized and effective proposals."
+                ]
+              },
+              {
+                "name": "Aiva (and AivaBackend)",
+                "link": "https://github.com/aabid2947/Aiva",
+                "description": "An AI-powered mobile assistant automating voice calls, email replies, and scheduling, with integrated subscription management.",
+                "technologies": ["JavaScript", "Node.js", "Express.js"],
+                "achievements": [
+                  "Engineered an intelligent assistant to streamline daily tasks, enhancing productivity for users.",
+                  "Developed robust backend infrastructure for managing AI functionalities and user data."
+                ]
+              },
+              {
+                "name": "V2V_Omnett",
+                "link": "https://github.com/aabid2947/V2V_Omnett",
+                "description": "A real-world Vehicle-to-Vehicle (V2V) simulation setup using Veins, OMNeT++, and SUMO, modeling Bangalore traffic.",
+                "technologies": ["C++", "OMNeT++", "Veins", "SUMO"],
+                "achievements": [
+                  "Successfully modeled complex traffic scenarios to enable realistic V2V communication simulations.",
+                  "Implemented visualization of message exchange with detailed position and speed logs, aiding research."
+                ]
+              },
+              {
+                "name": "RR_Coupon (and RR_CouponBackend)",
+                "link": "https://github.com/aabid2947/RR_Coupon",
+                "description": "A live coupon application featuring round-robin distribution and robust abuse prevention mechanisms.",
+                "technologies": ["JavaScript", "Node.js", "Express.js"],
+                "achievements": [
+                  "Designed and implemented a fair round-robin coupon allocation system.",
+                  "Integrated IP and cookie tracking with cooldowns to prevent coupon misuse and ensure equitable distribution."
+                ]
+              }
+            ],
+            "coding_practice": {
+              "total_solved": 246,
+              "acceptance_rate": 21.21,
+              "difficulty_breakdown": {
+                "Easy": 64,
+                "Medium": 53,
+                "Hard": 6
+              },
+              "contest_stats": {
+                "current_rating": null,
+                "global_rank": null,
+                "contests_attended": 0,
+                "top_percentile": null
+              },
+              "top_tags": [
+                { "tag": "Array", "solved": 63 },
+                { "tag": "Hash Table", "solved": 29 },
+                { "tag": "String", "solved": 28 },
+                { "tag": "Two Pointers", "solved": 24 },
+                { "tag": "Math", "solved": 23 }
+              ]
+            },
+            "certifications": [],
+            "achievements": [
+              "Winner of Smart India Hackathon 2024 (SIH2024) at IIT Guwahati: Developed a Few-Shot Language Agnostic Keyword Spotting System, achieving an F1 score of 0.7 on test data.",
+              "Successfully delivered a web development project for an Upwork client, integrating Tebex Store, a Markdown-based blog system, and implementing a CI/CD workflow with Cloudflare Pages.",
+              "Developed 'modernaff.com' for a client within 4 days, rapidly learning and utilizing WordPress, Elementor, and Astra Theme, including custom JavaScript for dynamic content and mobile optimization."
+            ]
+          },
+          "ratings": {
+            "technical_writing": {
+              "score": 4.0,
+              "rationale": "Demonstrates clear and descriptive writing in LinkedIn posts about projects, detailing purpose, technologies, and achievements, with concise GitHub project descriptions."
+            },
+            "programming_skills": {
+              "score": 4.5,
+              "rationale": "Proficient in multiple languages (JavaScript, Python, C++, TypeScript) and frameworks (MERN, PyTorch), coupled with strong data structures and algorithm knowledge evidenced by 246 LeetCode problems solved across difficulties."
+            },
+            "code_quality": {
+              "score": 3.0,
+              "rationale": "While project descriptions are good, without direct code access or explicit mentions of testing and code standards, assessment is limited; however, the range of complex projects suggests an understanding of structured development."
+            },
+            "project_impact": {
+              "score": 3.5,
+              "rationale": "Successfully delivered real-world client projects (Upwork, modernaff.com) with integration of payment gateways and CI/CD, and was a winner at Smart India Hackathon 2024, indicating tangible outcomes."
+            },
+            "technology_awareness": {
+              "score": 4.0,
+              "rationale": "Actively utilizes modern web technologies (React, Node.js), AI/ML concepts (LLMs, PyTorch, transformer models), cloud platforms (Cloudflare Pages), and CI/CD practices in recent projects."
+            },
+            "collaboration_communication": {
+              "score": 3.5,
+              "rationale": "Engaged as a Tech Team Member in student societies and effectively communicates project details and lessons learned through well-structured LinkedIn posts, though direct PR/issue collaboration metrics are not explicitly evident."
+            },
+            "open_source_contributions": {
+              "score": 2.5,
+              "rationale": "Has a high number of public repositories (40), but most are personal projects with minimal external stars or forks, suggesting limited direct community engagement on open-source platforms."
+            },
+            "competitive_programming": {
+              "score": 3.5,
+              "rationale": "Solved 246 LeetCode problems, including 53 Medium and 6 Hard, covering a wide array of topics like Arrays, Hash Tables, DP, and Trees, demonstrating solid algorithmic foundations, though the acceptance rate is low and contest participation is not recorded."
+            },
+            "system_design": {
+              "score": 2.5,
+              "rationale": "Project descriptions allude to system components (e.g., 'payments hub', 'backend for Aiva', 'blockchain database'), but detailed architectural considerations, scalability discussions, or design documentation are not explicitly provided."
+            },
+            "testing_qa": {
+              "score": 2.5,
+              "rationale": "Mentioned 'CI/CD Workflow' for a client project, which implies some level of automated testing, but explicit details on unit testing, integration tests, or test coverage are absent for other personal projects."
+            },
+            "devops_automation": {
+              "score": 3.0,
+              "rationale": "Demonstrated practical experience with CI/CD for client deployments (Cloudflare Pages) and built an 'Automated_Bid' project using LLMs for task automation, indicating foundational knowledge in these areas."
+            },
+            "learning_agility": {
+              "score": 4.5,
+              "rationale": "Explicitly showcased the ability to quickly learn new technologies (WordPress, Elementor) under tight deadlines for client projects and successfully applied advanced AI concepts in winning a national hackathon."
+            }
+          }
+        };
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const resume = jsonData.resume;
+            const ratings = jsonData.ratings;
+
+            // --- Render Resume Sections ---
+
+            // Summary
+            const summaryList = document.getElementById('summary-list');
+            resume.summary.forEach(point => {
+                const li = document.createElement('li');
+                li.textContent = point;
+                summaryList.appendChild(li);
+            });
+
+            // Skills
+            const skillsGrid = document.getElementById('skills-grid');
+            resume.skills.forEach(skill => {
+                const span = document.createElement('span');
+                span.classList.add('skill-tag');
+                span.textContent = skill;
+                skillsGrid.appendChild(span);
+            });
+
+            // Education
+            const educationContainer = document.getElementById('education-container');
+            resume.education.forEach(edu => {
+                const card = document.createElement('div');
+                card.classList.add('card');
+                card.innerHTML = `
+                    <h4>${edu.degree}</h4>
+                    <span class="subtitle">${edu.institution} | ${edu.dates}</span>
+                    <p><strong>GPA:</strong> ${edu.gpa}</p>
+                `;
+                educationContainer.appendChild(card);
+            });
+
+            // Experience
+            const experienceContainer = document.getElementById('experience-container');
+            resume.experience.forEach(exp => {
+                const card = document.createElement('div');
+                card.classList.add('card');
+                let bulletPointsHtml = exp.bullet_points.map(point => `<li>${point}</li>`).join('');
+                card.innerHTML = `
+                    <h4>${exp.title}</h4>
+                    <span class="subtitle">${exp.company} | ${exp.dates}</span>
+                    <ul>${bulletPointsHtml}</ul>
+                `;
+                experienceContainer.appendChild(card);
+            });
+
+            // Projects
+            const projectsContainer = document.getElementById('projects-container');
+            resume.projects.forEach(project => {
+                const card = document.createElement('div');
+                card.classList.add('card');
+                let technologiesHtml = project.technologies.map(tech => `<span class="skill-tag project-technologies">${tech}</span>`).join('');
+                let achievementsHtml = project.achievements.map(ach => `<li>${ach}</li>`).join('');
+
+                card.innerHTML = `
+                    <h4><a href="${project.link}" target="_blank" rel="noopener noreferrer">${project.name}</a></h4>
+                    <p>${project.description}</p>
+                    <div class="skills-grid">${technologiesHtml}</div>
+                    <strong>Key Contributions:</strong>
+                    <ul>${achievementsHtml}</ul>
+                `;
+                projectsContainer.appendChild(card);
+            });
+
+            // Coding Practice
+            const codingPractice = resume.coding_practice;
+            document.getElementById('total-solved').textContent = codingPractice.total_solved;
+            document.getElementById('acceptance-rate').textContent = codingPractice.acceptance_rate;
+            // Handle null/missing values for contest stats
+            document.getElementById('contest-attended').textContent = codingPractice.contest_stats.contests_attended !== null ? codingPractice.contest_stats.contests_attended : 'N/A';
+            document.getElementById('current-rating').textContent = codingPractice.contest_stats.current_rating !== null ? codingPractice.contest_stats.current_rating : 'N/A';
+
+            const difficultyBreakdown = document.getElementById('difficulty-breakdown');
+            const totalProblems = codingPractice.difficulty_breakdown.Easy + codingPractice.difficulty_breakdown.Medium + codingPractice.difficulty_breakdown.Hard;
+
+            for (const difficulty in codingPractice.difficulty_breakdown) {
+                const count = codingPractice.difficulty_breakdown[difficulty];
+                const percentage = totalProblems > 0 ? (count / totalProblems) * 100 : 0;
+                const difficultyItem = document.createElement('div');
+                difficultyItem.classList.add('difficulty-item');
+                difficultyItem.innerHTML = `
+                    <p>${difficulty}: ${count}</p>
+                    <div class="difficulty-bar-container">
+                        <div class="difficulty-bar ${difficulty.toLowerCase()}" style="width: ${percentage}%;"></div>
+                    </div>
+                `;
+                difficultyBreakdown.appendChild(difficultyItem);
+            }
+
+            const topTagsList = document.getElementById('top-tags-list');
+            if (codingPractice.top_tags && codingPractice.top_tags.length > 0) {
+                codingPractice.top_tags.forEach(tag => {
+                    const li = document.createElement('li');
+                    li.textContent = `${tag.tag} (${tag.solved} problems)`;
+                    topTagsList.appendChild(li);
+                });
+            } else {
+                topTagsList.innerHTML = '<li>No top tags available.</li>';
+            }
+
+
+            // Certifications
+            const certificationsList = document.getElementById('certifications-list');
+            if (resume.certifications && resume.certifications.length > 0) {
+                resume.certifications.forEach(cert => {
+                    const li = document.createElement('li');
+                    li.innerHTML = `<strong>${cert.name}</strong> from ${cert.issuer} (${cert.dates})`;
+                    if (cert.link) {
+                        li.innerHTML += ` <a href="${cert.link}" target="_blank" rel="noopener noreferrer">(View Certificate)</a>`;
+                    }
+                    certificationsList.appendChild(li);
+                });
+            } else {
+                certificationsList.innerHTML = '<li>No certifications listed.</li>';
+            }
+
+            // Achievements
+            const achievementsList = document.getElementById('achievements-list');
+            if (resume.achievements && resume.achievements.length > 0) {
+                resume.achievements.forEach(achievement => {
+                    const li = document.createElement('li');
+                    li.textContent = achievement;
+                    achievementsList.appendChild(li);
+                });
+            } else {
+                achievementsList.innerHTML = '<li>No achievements listed.</li>';
+            }
+
+            // --- Render Ratings Section ---
+            const ratingsContainer = document.getElementById('ratings-container');
+            for (const key in ratings) {
+                if (ratings.hasOwnProperty(key)) {
+                    const rating = ratings[key];
+                    // Convert snake_case key to Title Case for display
+                    const ratingName = key.replace(/_/g, ' ').replace(/\b\w/g, char => char.toUpperCase());
+                    const score = rating.score;
+                    const rationale = rating.rationale;
+                    const scorePercentage = (score / 5) * 100; // Calculate percentage for progress bar
+
+                    const card = document.createElement('div');
+                    card.classList.add('rating-card');
+                    card.innerHTML = `
+                        <h4>
+                            <span>${ratingName}</span>
+                            <span class="rating-score">${score.toFixed(1)}/5.0</span>
+                        </h4>
+                        <div class="progress-bar-container">
+                            <div class="progress-bar-fill" style="width: ${scorePercentage}%;"></div>
+                        </div>
+                        <p class="rating-rationale">${rationale}</p>
+                    `;
+                    ratingsContainer.appendChild(card);
+                }
+            }
+        });
+    </script>
+</body>
+</html>
