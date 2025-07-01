@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>EVALZZ Investor Deck</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4/dist/reveal.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4/dist/theme/white.css">
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+      <!-- Slide 1: Title -->
+      <section>
+        <h1>EVALZZ</h1>
+        <h3>Unified AI Profiles for Smarter Tech Hiring</h3>
+        <p>Investor Presentation</p>
+        <p>Hammad Ali | July 2025</p>
+      </section>
+
+      <!-- Slide 2: Problem Statement -->
+      <section>
+        <h2>Problem</h2>
+        <ul>
+          <li>Fragmented candidate data across LinkedIn, GitHub, Twitter, Medium, YouTube</li>
+          <li>Recruiters lack deep technical insights; relying on resumes alone</li>
+          <li>Cumbersome multi-tool workflows for sourcing, assessing, and scheduling</li>
+          <li>Low transparency and trust in candidate authenticity</li>
+        </ul>
+      </section>
+
+      <!-- Slide 3: Market Opportunity -->
+      <section>
+        <h2>Market Opportunity</h2>
+        <ul>
+          <li>Indian tech hiring market: ~$2B SaaS spend (est.)</li>
+          <li>Rapid growth in AI-driven HR tools</li>
+          <li>High demand for quality tech talent—enterprises & startups</li>
+        </ul>
+      </section>
+
+      <!-- Slide 4: Solution Overview -->
+      <section>
+        <h2>Solution: EVALZZ</h2>
+        <p>An end-to-end SaaS platform that:</p>
+        <ul>
+          <li>Aggregates data from multiple sources into one unified profile</li>
+          <li>Uses AI to assess and rate candidates on technical dimensions</li>
+          <li>Verifies projects via live coding and peer reviews</li>
+          <li>Matches candidates to roles with intelligent filtering and scoring</li>
+        </ul>
+      </section>
+
+      <!-- Slide 5: Core Features -->
+      <section>
+        <h2>Core Features</h2>
+        <ul>
+          <li>Unified Candidate Profiles (LinkedIn, GitHub, Twitter, Medium, YouTube)</li>
+          <li>AI-Based Multi-Dimensional Ratings (Code Quality, Writing, System Design)</li>
+          <li>Verified Projects & Peer Reviews with Authenticity Badges</li>
+          <li>Intelligent Profile Matching & Filtered Search</li>
+          <li>Built-In Collaboration & Scheduling Tools</li>
+        </ul>
+      </section>
+
+      <!-- Slide 6: Competitive Differentiators -->
+      <section>
+        <h2>Competitive Differentiators</h2>
+        <ol>
+          <li>Deep technical analysis: code pattern & static review</li>
+          <li>Visual scoring: radar charts & skill badges</li>
+          <li>Full workflow: sourcing → assessment → collaboration</li>
+          <li>Profile portability & trust via verified badges</li>
+          <li>Regional language support & learning recommendations</li>
+        </ol>
+      </section>
+
+      <!-- Slide 7: Technology Stack -->
+      <section>
+        <h2>Technology Stack</h2>
+        <ul>
+          <li>Frontend: React + Tailwind CSS</li>
+          <li>Backend: Node.js/Express + Flask APIs</li>
+          <li>Database: MongoDB (JSON profiles)</li>
+          <li>AI/ML: Transformers (BERT, T5), Code analysis libs (ESLint, static analyzers)</li>
+          <li>Cloud: AWS (EC2, S3), Docker, Kubernetes</li>
+        </ul>
+      </section>
+
+      <!-- Slide 8: Business Model -->
+      <section>
+        <h2>Business Model</h2>
+        <ul>
+          <li>SaaS Subscription: tiered by active roles & features</li>
+          <li>Per-assessment fees for coding tests & peer reviews</li>
+          <li>Enterprise plans with custom integrations & SLAs</li>
+        </ul>
+      </section>
+
+      <!-- Slide 9: Go-to-Market Strategy -->
+      <section>
+        <h2>Go-to-Market Strategy</h2>
+        <ul>
+          <li>Partnerships with recruitment agencies & HR consultancies</li>
+          <li>Digital marketing & thought leadership on LinkedIn</li>
+          <li>Free trial & pilot programs with mid-sized enterprises</li>
+          <li>Presence at HR tech events & webinars</li>
+        </ul>
+      </section>
+
+      <!-- Slide 10: Prototype Trial -->
+      <section>
+        <h2>Try the EVALZZ Prototype</h2>
+        <p>Experience the unified AI hiring platform first-hand:</p>
+        <ul>
+          <li>Access the prototype at: <a href="https://evalzz.vercel.app" target="_blank">evalzz.vercel.app</a></li>
+          <li>Over <strong>100 candidate profiles</strong> have been generated to date</li>
+          <li>Test AI-driven scoring, project verification, and matching capabilities</li>
+        </ul>
+      </section>
+
+      <!-- Slide 11: Financial Projections -->
+      <section>
+        <h2>Financial Projections</h2>
+        <ul>
+          <li>Year 1 ARR: $300K (Pilot & early adopters)</li>
+          <li>Year 2 ARR: $1.2M (Scale to mid-market)</li>
+          <li>Year 3 ARR: $4M (Enterprise expansion & upsells)</li>
+        </ul>
+      </section>
+
+      <!-- Slide 12: Team & Milestones -->
+      <section>
+        <h2>Team & Milestones</h2>
+        <ul>
+          <li><strong>Hammad Ali</strong> – Founder & CEO (AI/ML Engineer)</li>
+          <li>CTO – [TBD] (10+ yrs in SaaS)</li>
+          <li>Product Lead – [TBD]</li>
+          <li>Key Milestones:</li>
+          <ul>
+            <li>Prototype launch: Q3 2025</li>
+            <li>Beta users: Q4 2025</li>
+            <li>Public launch: Q1 2026</li>
+          </ul>
+        </ul>
+      </section>
+
+      <!-- Slide 13: Call to Action -->
+      <section>
+        <h2>Join Us</h2>
+        <p>Invest in the future of AI-driven tech hiring.</p>
+        <p>Contact: <a href="mailto:hammadalipbt18@gmail.com">hammadalipbt18@gmail.com</a></p>
+        <p>LinkedIn: <a href="https://www.linkedin.com/in/hammadali1805" target="_blank">Hammad Ali</a></p>
+      </section>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@4/dist/reveal.js"></script>
+  <script>
+    Reveal.initialize({
+      hash: true,
+      slideNumber: true
+    });
+  </script>
+</body>
+</html>
